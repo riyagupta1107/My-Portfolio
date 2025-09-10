@@ -50,6 +50,15 @@ function Scroller() {
           <span className=''>|</span>
         </div>
 
+        <div className='font-myFont flex items-center text-base'>
+          <span className='mx-4 '>Full Stack Developer</span>
+          <span className=''>|</span>
+          <span className='mx-4 '>Problem Solving Enthusiast</span>
+          <span className=''>|</span>
+          <span className='mx-4 '>Designer</span>
+          <span className=''>|</span>
+        </div>
+        
       </div>
     </div>
   );

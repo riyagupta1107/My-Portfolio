@@ -7,7 +7,10 @@ export default {
     extend: {
       fontFamily: {
         'tai': ['"Tai Heritage Pro"', 'serif'],
+        'textFont': ['"Courier Prime"', 'serif'],
         'myFont': ['"Libre Baskerville"', 'serif'],
+        'myFont1':['myFont1', 'sans-serif'],
+        'customFont': ['customFont'],
       },
       colors: {
         lightGreen: '#f9fbee',

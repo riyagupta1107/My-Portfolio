@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function NavBar() {
+function NavBar({ projectRef, skillsRef, expRef }) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -9,19 +9,24 @@ function NavBar() {
     navigate(path);
     setIsOpen(false); // Close the menu after a link is clicked
   };
+  const scrollToSection = (elementRef) => {
+    elementRef.current.scrollIntoView({ behavior: "smooth" });
+    setIsOpen(false);
+  };
 
   return (
     // The 'relative' class is important for positioning the absolute mobile menu
-    <nav className='bg-lightGreen border border-black relative'>
+    <nav className='sticky top-0 bg-lightGreen border border-black z-50'>
       <div className=' w-full '>
         <div className='flex justify-around items-center h-[80px]'>
 
           {/* Primary Nav: Hidden on mobile, visible on desktop */}
-          <div className='hidden md:flex w-[80%] justify-around items-center text-md font-myFont'>
+          <div className='hidden md:flex w-[80%] justify-around items-center text-lg font-textFont'>
             <button onClick={() => handleNavigate("/")} className='hover:text-gray-500'>Home</button>
+            <button onClick={() => scrollToSection(skillsRef)}>Skills</button>
             <button onClick={() => handleNavigate("/education")} className='hover:text-gray-500'>Education</button>
-            <button onClick={() => handleNavigate("/exp")} className='hover:text-gray-500'>Experience</button>
-            <button onClick={() => handleNavigate("/projects")} className='hover:text-gray-500'>Projects</button>
+            <button onClick={() => scrollToSection(expRef)} className='hover:text-gray-500'>Experience</button>
+            <button onClick={() => scrollToSection(projectRef)} className='hover:text-gray-500'>Projects</button>
             <button onClick={() => handleNavigate("/contact")} className='hover:text-gray-500'>Connect with me</button>
           </div>
           
@@ -46,9 +51,10 @@ function NavBar() {
       >
         <div className='flex flex-col items-center p-5 space-y-4'>
           <button onClick={() => handleNavigate("/")} className='w-full text-center'>Home</button>
+          <button onClick={() => scrollToSection(skillsRef)} className='w-full text-center'>Skills</button>
           <button onClick={() => handleNavigate("/education")} className='w-full text-center'>Education</button>
-          <button onClick={() => handleNavigate("/exp")} className='w-full text-center'>Experience</button>
-          <button onClick={() => handleNavigate("/projects")} className='w-full text-center'>Projects</button>
+          <button onClick={() => scrollToSection(expRef)} className='w-full text-center'>Experience</button>
+          <button onClick={() => scrollToSection(projectRef)} className='w-full text-center'>Projects</button>
           <button onClick={() => handleNavigate("/contact")} className='w-full text-center'>Connect with me</button>
         </div>
       </div>

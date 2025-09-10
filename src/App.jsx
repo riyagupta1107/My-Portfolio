@@ -1,27 +1,26 @@
-import React from "react";
+import React, { useRef } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 
 import NavBar from "./components/NavBar";
 
 import Home from "./pages/Home";
-import Projects from "./pages/Projects";
 import Education from "./pages/Education";
-import Experience from "./pages/Experience";
 import Contact from "./pages/Contact";
 
 function App() {
+  const projectRef = useRef(null);
+  const skillsRef = useRef(null);
+  const expRef = useRef(null);
 
   return (
     <>
       <Router>
-      <NavBar />
+      <NavBar projectRef={projectRef} skillsRef={skillsRef} expRef={expRef}/>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home projectRef={projectRef} skillsRef={skillsRef} expRef={expRef}/>} />
           <Route path="/education" element={<Education />} />
-          <Route path="/exp" element={<Experience />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/projects" element={<Projects />} />
         </Routes>
       </Router>
     </>
